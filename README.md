@@ -1,36 +1,23 @@
-# KeyBard - Vite + React + TypeScript Setup
+# KeyBard
 
 [![Test Coverage](https://img.shields.io/codecov/c/github/chad3814/keybard?style=flat-square&label=coverage)](https://codecov.io/gh/chad3814/keybard)
 [![Tests](https://img.shields.io/github/actions/workflow/status/chad3814/keybard/test.yml?branch=main&style=flat-square&label=tests)](https://github.com/chad3814/keybard/actions/workflows/test.yml)
 
-Quick reference for the new Vite-based UI alongside the original Python setup.
+A modern Vite-based keyboard configuration UI built with React and TypeScript.
 
 ## Quick Start
 
-### Original Setup (Unchanged)
-
 ```bash
-source .venv/bin/activate
-python devserver.py
-# → http://localhost:8000
-```
-
-### New Vite Setup
-
-```bash
-npm install        # First time only
-npm run dev        # Development
+npm install        # Install dependencies
+npm run dev        # Start development server
 # → http://localhost:5173
 ```
 
 ## Project Structure
 
 ```text
-keybard/
-├── pages/          # Original HTML/JS (untouched)
-│   ├── js/vial/   # Original Vial JS modules
-│   └── index.html
-├── src/           # NEW: Vite + React + TypeScript
+keybard-ng/
+├── src/           # Vite + React + TypeScript
 │   ├── constants/      # KeyMap constants
 │   ├── components/     # React components
 │   ├── contexts/       # VialContext
@@ -40,6 +27,11 @@ keybard/
 │   │   ├── utils.ts
 │   │   └── vial.service.ts
 │   └── types/         # TypeScript definitions
+├── tests/         # Test suite
+│   ├── services/       # Service layer tests
+│   ├── contexts/       # React Context tests
+│   ├── fixtures/       # Test data and mocks
+│   └── mocks/          # USB and API mocks
 └── dist/          # Build output (gitignored)
 ```
 
@@ -161,11 +153,6 @@ Tests run automatically on:
 - Pushes to main/master
 - Coverage reports posted to PRs
 
-## Important Notes
+## Documentation
 
-- **Both setups coexist independently**
-- `pages/` directory is completely unchanged
-- Python dev server works exactly as before
-- No conflicts between old and new systems
-
-See [VITE_SETUP.md](./VITE_SETUP.md) for detailed documentation.
+See [VITE_SETUP.md](./VITE_SETUP.md) for detailed setup and development documentation.

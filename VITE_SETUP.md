@@ -1,15 +1,12 @@
 # Vite + React + TypeScript Setup
 
-This branch (`vite-ts`) includes a modern React UI built with Vite and TypeScript, alongside the existing Python/HTML/JS setup.
+A modern React UI built with Vite and TypeScript for keyboard configuration.
 
 ## Structure
 
 ```
-keybard/
-├── pages/              # Original HTML/JS/CSS (still functional)
-│   ├── js/vial/       # Original Vial JS files
-│   └── index.html     # Original interface
-├── src/               # NEW: Vite + React + TS
+keybard-ng/
+├── src/               # Vite + React + TS
 │   ├── components/    # React components
 │   ├── contexts/      # React contexts (VialContext)
 │   ├── services/      # TypeScript Vial services
@@ -20,29 +17,16 @@ keybard/
 │   ├── App.tsx       # Main App component
 │   ├── main.tsx      # React entry point
 │   └── index.html    # Vite HTML template
-├── dist/             # Vite build output (gitignored)
-└── devserver.py      # Python dev server (unchanged)
+├── tests/            # Test suite
+│   ├── services/     # Service tests
+│   ├── contexts/     # Context tests
+│   └── fixtures/     # Test data
+└── dist/             # Vite build output (gitignored)
 ```
 
-## Two Modes of Operation
+## Development Setup
 
-### 1. Original Python Server (Unchanged)
-
-The existing Python/HTML/JS setup continues to work exactly as before:
-
-```bash
-# Activate Python virtual environment
-source .venv/bin/activate
-
-# Run the Python dev server
-python devserver.py
-
-# Access at http://localhost:8000
-```
-
-### 2. NEW: Vite Dev Server
-
-The new React/TypeScript interface:
+### Vite Dev Server
 
 ```bash
 # Install dependencies (first time only)
@@ -58,11 +42,11 @@ npm run dev
 
 ### TypeScript Services
 
-The original Vial JS modules have been converted to TypeScript and structured as ES modules:
+Core Vial modules implemented in TypeScript as ES modules:
 
 - **`usb.ts`**: USB HID communication with Vial protocol
 - **`vial.service.ts`**: Main service for keyboard operations
-- **`key.service.ts`**: Keycode parsing and stringifying (from keys.js)
+- **`key.service.ts`**: Keycode parsing and stringifying
 - **`utils.ts`**: Byte manipulation utilities
 
 ### Constants
@@ -119,9 +103,6 @@ npm run build
 
 ## Notes
 
-- The `pages/` directory remains completely untouched
-- Both setups can coexist and be used independently
-- The Python server continues to work exactly as before
 - TypeScript provides better IDE support and type safety
 - React enables modern component-based UI development
 - XZ decompression is handled by the `xz-decompress` npm package (includes types, no script tag needed)
@@ -140,12 +121,12 @@ npm run build
 
 ## Future Work
 
-The following Vial features from `pages/js/vial/` can be added as TypeScript services:
+The following Vial features can be implemented as TypeScript services:
 
-- `macro.js` → Macro management service
-- `combo.js` → Combo configuration service
-- `tapdance.js` → Tap dance service
-- `keyoverride.js` → Key override service
-- `qmk.js` → QMK settings service
+- Macro management service
+- Combo configuration service
+- Tap dance service
+- Key override service
+- QMK settings service
 
 Each can be integrated into the React UI as needed.
