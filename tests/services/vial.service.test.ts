@@ -118,15 +118,25 @@ describe('VialService', () => {
       return Promise.resolve(new Uint8Array(32));
     });
 
-    mockUSB.getViaBuffer.mockImplementation((cmd: number, size: number) => {
+    mockUSB.getViaBuffer.mockImplementation((cmd: number, size: number, options?: any) => {
       // Return mock keymap data
-      const buffer = new Uint8Array(size);
-      // Fill with sequential keycodes for testing
-      for (let i = 0; i < size / 2; i++) {
-        buffer[i * 2] = (i >> 8) & 0xFF; // Big endian high byte
-        buffer[i * 2 + 1] = i & 0xFF;    // Big endian low byte
+      if (options?.uint16) {
+        // When uint16 is true, return array of numbers
+        const data: number[] = [];
+        for (let i = 0; i < size / 2; i++) {
+          data.push(i);  // Return sequential keycodes as numbers
+        }
+        return Promise.resolve(data);
+      } else {
+        // Return Uint8Array for byte data
+        const buffer = new Uint8Array(size);
+        // Fill with sequential keycodes for testing
+        for (let i = 0; i < size / 2; i++) {
+          buffer[i * 2] = (i >> 8) & 0xFF; // Big endian high byte
+          buffer[i * 2 + 1] = i & 0xFF;    // Big endian low byte
+        }
+        return Promise.resolve(buffer);
       }
-      return Promise.resolve(buffer);
     });
 
     vialService = new VialService(mockUSB);
@@ -213,7 +223,7 @@ describe('VialService', () => {
 
       expect(kbinfo.keymap).toHaveLength(4); // 4 layers
       expect(kbinfo.keymap?.[0]).toHaveLength(4); // 2x2 = 4 keys per layer
-      expect(kbinfo.keymap?.[0][0]).toBe('KC_0'); // First key
+      expect(kbinfo.keymap?.[0][0]).toBe(0); // First key (numeric keycode)
     });
 
     it('should throw error if layer count is not available', async () => {
