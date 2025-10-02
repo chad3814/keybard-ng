@@ -1,7 +1,7 @@
 # KeyBard
 
-[![Test Coverage](https://img.shields.io/codecov/c/github/chad3814/keybard?style=flat-square&label=coverage)](https://codecov.io/gh/chad3814/keybard)
-[![Tests](https://img.shields.io/github/actions/workflow/status/chad3814/keybard/test.yml?branch=main&style=flat-square&label=tests)](https://github.com/chad3814/keybard/actions/workflows/test.yml)
+[![Test Coverage](https://img.shields.io/codecov/c/github/svalboard/keybard-ng?style=flat-square&label=coverage)](https://codecov.io/gh/svalboard/keybard-ng)
+[![Tests](https://img.shields.io/github/actions/workflow/status/svalboard/keybard-ng/test.yml?branch=main&style=flat-square&label=tests)](https://github.com/svalboard/keybard-ng/actions/workflows/test.yml)
 
 A modern Vite-based keyboard configuration UI built with React and TypeScript.
 
