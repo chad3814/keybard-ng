@@ -74,6 +74,10 @@ export class VialUSB {
     return true;
   }
 
+  getDeviceName(): string | null {
+    return this.device?.productName || null;
+  }
+
   async close(): Promise<void> {
     if (this.device) {
       if (this.handleEvent) {

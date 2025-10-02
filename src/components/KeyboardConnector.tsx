@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useVial } from '../contexts/VialContext';
 import { QMKSettings } from './QMKSettings';
 import { Keyboard } from './Keyboard';
 import './KeyboardConnector.css';
 
 const KeyboardConnector: React.FC = () => {
-  const { keyboard, isConnected, isWebHIDSupported, connect, disconnect, loadKeyboard } = useVial();
+  const { keyboard, isConnected, isWebHIDSupported, loadedFrom, connect, disconnect, loadKeyboard, loadFromFile } = useVial();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(
     () => {
@@ -54,6 +55,35 @@ const KeyboardConnector: React.FC = () => {
     }
   };
 
+  const handleLoadFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setLoading(true);
+    setError(null);
+    try {
+      await loadFromFile(file);
+    } catch (err) {
+      if (err instanceof Error) {
+        if (err.message === 'Invalid JSON') {
+          setError('Invalid JSON');
+        } else if (err.message === 'Invalid file') {
+          setError('Invalid file');
+        } else if (err.message === 'File too large') {
+          setError('File too large (max 1MB)');
+        } else {
+          setError(err.message);
+        }
+      }
+    } finally {
+      setLoading(false);
+      // Reset input so same file can be selected again
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    }
+  };
+
   return (
     <div className="keyboard-connector">
       {!isWebHIDSupported ? (
@@ -94,6 +124,16 @@ const KeyboardConnector: React.FC = () => {
                 {loading ? 'Disconnecting...' : 'Disconnect'}
               </button>
             )}
+            <button onClick={() => fileInputRef.current?.click()} disabled={loading}>
+              {loading ? 'Loading...' : 'Load File'}
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".kbi,application/json"
+              style={{ display: 'none' }}
+              onChange={handleLoadFile}
+            />
           </div>
         </>
       )}
@@ -108,6 +148,12 @@ const KeyboardConnector: React.FC = () => {
         <div className="keyboard-info">
           <h3>Keyboard Information</h3>
           <dl>
+            {loadedFrom && (
+              <>
+                <dt>Loaded From:</dt>
+                <dd>{loadedFrom}</dd>
+              </>
+            )}
             <dt>Keyboard ID:</dt>
             <dd>{keyboard.kbid}</dd>
             <dt>VIA Protocol:</dt>
