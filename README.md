@@ -50,6 +50,31 @@ npm run build    # Production build
 npm run preview  # Preview production build
 ```
 
+## Loading Keyboard Configurations
+
+KeyBard supports two ways to view keyboard configurations:
+
+### 1. Connect to Physical Keyboard
+
+Click "Connect Keyboard" to connect to a Vial-compatible keyboard via WebHID.
+
+**Browser Support**: Chrome (89+), Edge (89+), Opera (75+), Brave
+**Not Supported**: Firefox, Safari (WebHID unavailable)
+
+### 2. Load Configuration File
+
+Click "Load File" to load a `.kbi` (Keyboard Info) configuration file.
+
+**Supported format**: JSON files conforming to the KeyboardInfo interface
+**File size limit**: 1MB maximum
+**Required fields**: `rows`, `cols`
+
+Sample configuration files are available in the `sample-boards/` directory.
+
+### Switching Between Sources
+
+You can freely switch between connected keyboards and loaded files. The display always shows the most recent source. The "Loaded From" field indicates whether you're viewing a device or a file.
+
 ## Integration Points
 
 ### VialContext Hook
@@ -58,7 +83,14 @@ npm run preview  # Preview production build
 import { useVial } from './contexts/VialContext';
 
 function MyComponent() {
-  const { keyboard, isConnected, connect, loadKeyboard } = useVial();
+  const {
+    keyboard,
+    isConnected,
+    loadedFrom,
+    connect,
+    loadKeyboard,
+    loadFromFile
+  } = useVial();
 
   // Use Vial services...
 }
@@ -79,6 +111,7 @@ function MyComponent() {
 ✅ KEY utilities (keycode parsing, CODEMAP, KEYMAP, KEYALIASES)
 ✅ React Context provider
 ✅ Basic connection UI
+✅ File loading (.kbi configuration files)
 
 ## What's Next
 
