@@ -40,7 +40,15 @@
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
     --color-kb-gray: #f1f2f2;
-    --color-kb-primary: #05b68d;
+    --color-kb-primary: #099e7c;
+    --color-kb-green: #099e7c;
+    --color-kb-blue: #379cd7;
+    --color-kb-purple: #8672b5;
+    --color-kb-orange: #f89804;
+    --color-kb-yellow: #ffc222;
+    --color-kb-grey: #85929b;
+    --color-kb-red: #d8304a;
+    --color-kb-brown: #b39369;
 }
 
 :root {
