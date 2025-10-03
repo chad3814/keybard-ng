@@ -27,11 +27,11 @@ const AppSidebar = () => {
         <>
             <Sidebar collapsible="icon" className="rounded-full border border-sidebar-border bg-sidebar-background shadow-lg fixed" defaultValue={"collapsed"}>
                 <SidebarHeader className="p-4">
-                    <div className="flex items-center justify-center">
+                    <div className={`flex items-center ${isCollapsed ? "justify-center" : "justify-start"}`}>
                         <div className="flex h-12 w-12 items-center justify-center">
                             <Logo />
                         </div>
-                        {!isCollapsed && <span className="text-lg font-bold">Keybard</span>}
+                        {!isCollapsed && <span className="text-xl font-bold">Keybard</span>}
                     </div>
                     <SidebarMenuItem key="a">
                         <SidebarTrigger className="z-10" />

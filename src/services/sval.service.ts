@@ -113,6 +113,10 @@ export class SvalService {
         return `Layer ${layerIndex}`;
     }
 
+    getLayerCosmetic(kbinfo: KeyboardInfo, layerIndex: number): string | undefined {
+        return kbinfo.cosmetic?.layer?.[layerIndex.toString()];
+    }
+
     getLayerNameNoLabel(kbinfo: KeyboardInfo, layerIndex: number): string {
         if (kbinfo.cosmetic?.layer?.[layerIndex.toString()]) {
             return kbinfo.cosmetic.layer[layerIndex.toString()];
