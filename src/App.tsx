@@ -1,20 +1,12 @@
-import { VialProvider } from './contexts/VialContext';
-import KeyboardConnector from './components/KeyboardConnector';
-import './App.css';
+import MainScreen from "./components/MainScreen";
+import { VialProvider } from "./contexts/VialContext";
 
 function App() {
-  return (
-    <VialProvider>
-      <div className="App">
-        <header className="App-header">
-          <h1>KeyBard</h1>
-        </header>
-        <main>
-          <KeyboardConnector />
-        </main>
-      </div>
-    </VialProvider>
-  );
+    return (
+        <VialProvider>
+            <MainScreen />
+        </VialProvider>
+    );
 }
 
 export default App;
