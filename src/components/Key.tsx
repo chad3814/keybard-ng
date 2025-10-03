@@ -35,7 +35,7 @@ export const Key: React.FC<KeyProps> = ({ x, y, w, h, keycode, label, row, col, 
         <div className="absolute top-0 left-0">
             <div
                 className={`
-                    absolute bg-kb-primary flex items-center justify-center cursor-pointer transition-all duration-200 ease-in-out rounded-md font-semibold
+                    absolute bg-kb-primary flex items-center justify-center cursor-pointer transition-all duration-200 ease-in-out rounded-md uppercase
                     ${selected ? "border-2 border-kb-gray bg-red-500" : "border-2 border-kb-gray hover:border-red-500"}
                   `}
                 style={style}
@@ -45,7 +45,7 @@ export const Key: React.FC<KeyProps> = ({ x, y, w, h, keycode, label, row, col, 
                 data-col={col}
                 title={keycode}
             >
-                <span className="text-white text-lg">{label}</span>
+                <span className="text-white text-sm text-center">{label}</span>
             </div>
         </div>
     );

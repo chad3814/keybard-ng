@@ -1,3 +1,5 @@
+import { Layers2Icon, RectangleEllipsisIcon } from "lucide-react";
+
 import { Dialog } from "@/components/ui/dialog";
 import { DialogTrigger } from "@radix-ui/react-dialog";
 import EditLayer from "@/components/EditLayer";
@@ -19,7 +21,8 @@ const LayerSelector: FC<Props> = ({ selectedLayer, setSelectedLayer }) => {
     };
     return (
         <div>
-            <div className="h-[50px] py-10 w-full flex items-center justify-start text-gray-500">
+            <div className="h-[50px] py-10 w-full flex items-center justify-start text-gray-500 gap-1">
+                <Layers2Icon className="ml-2 h-5 w-5 mr-2 text-black" />
                 {Array.from({ length: keyboard!.layers || 16 }, (_, i) => {
                     const layer = svalService.getLayerNameNoLabel(keyboard!, i);
                     const isActive = selectedLayer === i;
@@ -29,7 +32,7 @@ const LayerSelector: FC<Props> = ({ selectedLayer, setSelectedLayer }) => {
                             key={layer}
                             onClick={handleSelectLayer(i)}
                             className={`
-                        cursor-pointer px-5 py-1 mx-2 rounded-full transition-colors relative
+                        cursor-pointer px-5 py-1 rounded-full transition-colors relative
                         ${isActive ? "bg-gray-800 text-white shadow-md" : "hover:bg-gray-200"}
                     `}
                         >
@@ -59,11 +62,14 @@ const LayerSelector: FC<Props> = ({ selectedLayer, setSelectedLayer }) => {
                     );
                 })}
             </div>
-            <div className="text-lg text-gray-400 mt-2 font-bold flex justify-start items-center">
-                <div className={`ml-3 w-4 h-4 bg-black mr-4 rounded-full`}></div>
+            <div className="text-lg text-gray-600 mt-2 font-bold flex justify-start items-center">
+                <div className={`ml-3 w-3 h-3 bg-black mr-3 rounded-full`}></div>
                 <span>
                     {selectedLayer}: {svalService.getLayerName(keyboard!, selectedLayer)}
                 </span>
+                <div>
+                    <RectangleEllipsisIcon className="h-5 w-5 ml-4 text-gray-500" />
+                </div>
             </div>
         </div>
     );
