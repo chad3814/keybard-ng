@@ -27,14 +27,20 @@ const footerItems: SidebarItem[] = [
 type AppSidebarProps = {
     activeItem: string | null;
     onItemSelect: (item: SidebarItem) => void;
+    detailsSidebar: ReturnType<typeof useSidebar>;
 };
 
-const AppSidebar = ({ activeItem, onItemSelect }: AppSidebarProps) => {
+const AppSidebar = ({ activeItem, onItemSelect, detailsSidebar }: AppSidebarProps) => {
     const { state } = useSidebar("primary-nav", { defaultOpen: false });
     const isCollapsed = state === "collapsed";
+    const showDetailsSidebar = !detailsSidebar.isMobile && detailsSidebar.state === "expanded";
+    const sidebarClasses = cn(
+        "z-11 fixed transition-[box-shadow,border-color] duration-300 ease-out border border-sidebar-border shadow-lg",
+        state === "collapsed" ? "rounded-full ml-2 h-[99vh] mt-[0.5vh] transition-all" : "rounded-2xl ml-2 h-[99vh] mt-[0.5vh] transition-transform"
+    );
 
     return (
-        <Sidebar name="primary-nav" defaultOpen={false} collapsible="icon" hideGap className="rounded-full border border-sidebar-border bg-sidebar-background shadow-lg fixed">
+        <Sidebar rounded name="primary-nav" defaultOpen={false} collapsible="icon" hideGap className={sidebarClasses}>
             <SidebarHeader className="p-4">
                 <div className={`flex items-center ${isCollapsed ? "justify-center" : "justify-start"}`}>
                     <div className="flex h-12 w-12 items-center justify-center">

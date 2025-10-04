@@ -55,7 +55,7 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({ activePanel, onClos
         setActiveModifiers([]);
     }, [activePanel]);
 
-    const primaryOffset = primarySidebar.state === "collapsed" ? "var(--sidebar-width-icon)" : "var(--sidebar-width-base)";
+    const primaryOffset = primarySidebar.state === "collapsed" ? "calc(var(--sidebar-width-icon) + var(--spacing)*4)" : "calc(var(--sidebar-width-base) + var(--spacing)*4)";
 
     const handleModifierToggle = (modifier: string) => {
         setActiveModifiers((prev) => (prev.includes(modifier) ? prev.filter((item) => item !== modifier) : [...prev, modifier]));
@@ -160,7 +160,7 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({ activePanel, onClos
             defaultOpen={false}
             collapsible="offcanvas"
             hideGap
-            className=" bg-sidebar-background shadow-lg"
+            className="z-8 bg-sidebar-background"
             style={
                 {
                     left: primarySidebar.isMobile ? undefined : primaryOffset,

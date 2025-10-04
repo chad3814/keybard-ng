@@ -276,6 +276,7 @@ function Sidebar({
     className,
     hideGap = false,
     children,
+    rounded = false,
     ...props
 }: React.ComponentProps<"div"> & {
     name?: string;
@@ -284,6 +285,7 @@ function Sidebar({
     variant?: "sidebar" | "floating" | "inset";
     collapsible?: "offcanvas" | "icon" | "none";
     hideGap?: boolean;
+    rounded?: boolean;
 }) {
     const { isMobile, state, open, openMobile, setOpenMobile } = useSidebar(name, { defaultOpen });
 
@@ -350,7 +352,7 @@ function Sidebar({
                 data-slot="sidebar-container"
                 data-state={state}
                 className={cn(
-                    "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-300 ease-in-out md:flex",
+                    "fixed inset-y-0 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-300 ease-in-out md:flex",
                     "group-data-[collapsible=offcanvas]:group-data-[state=collapsed]:pointer-events-none",
                     side === "left"
                         ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
@@ -367,11 +369,12 @@ function Sidebar({
                     data-sidebar="sidebar"
                     data-slot="sidebar-inner"
                     className={cn(
-                        "bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm",
+                        "bg-white group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm",
                         "opacity-100 translate-x-0 transition-[opacity,transform] duration-300 ease-in-out",
                         "group-data-[collapsible=offcanvas]:group-data-[state=collapsed]:opacity-0",
                         "group-data-[side=left]:group-data-[collapsible=offcanvas]:group-data-[state=collapsed]:translate-x-4",
-                        "group-data-[side=right]:group-data-[collapsible=offcanvas]:group-data-[state=collapsed]:-translate-x-4"
+                        "group-data-[side=right]:group-data-[collapsible=offcanvas]:group-data-[state=collapsed]:-translate-x-4",
+                        ...(rounded ? (state === "collapsed" ? ["rounded-full"] : ["rounded-2xl"]) : [])
                     )}
                 >
                     {children}

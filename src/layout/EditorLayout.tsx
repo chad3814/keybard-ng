@@ -6,6 +6,7 @@ import { SidebarProvider, useSidebar } from "@/components/ui/sidebar";
 
 import { Keyboard } from "@/components/Keyboard";
 import LayerSelector from "./LayerSelector";
+import { cn } from "@/lib/utils";
 import { useVial } from "@/contexts/VialContext";
 
 const EditorLayout = () => {
@@ -22,6 +23,7 @@ const EditorLayoutInner = () => {
     const [activePanel, setActivePanel] = React.useState<string | null>(null);
 
     const primarySidebar = useSidebar("primary-nav", { defaultOpen: false });
+    const detailsSidebar = useSidebar("details-panel", { defaultOpen: false });
     const { isMobile, open: detailsOpen, state: detailsState, setOpen, setOpenMobile } = useSidebar("details-panel", { defaultOpen: false });
 
     const openDetails = React.useCallback(() => {
@@ -76,10 +78,10 @@ const EditorLayoutInner = () => {
     );
 
     return (
-        <div className="flex h-screen max-w-screen p-0">
-            <AppSidebar activeItem={activePanel} onItemSelect={handleItemSelect} />
+        <div className={cn("flex h-screen max-w-screen p-0", showDetailsSidebar && "bg-white")}>
+            <AppSidebar activeItem={activePanel} onItemSelect={handleItemSelect} detailsSidebar={detailsSidebar} />
             {activePanel && <SecondarySidebar activePanel={activePanel} onClose={handleCloseDetails} />}
-            <div className="flex-1 px-4 h-screen max-h-screen flex flex-col max-w-full w-full overflow-hidden" style={contentStyle}>
+            <div className="flex-1 px-4 h-screen max-h-screen flex flex-col max-w-full w-full overflow-hidden bg-kb-gray" style={contentStyle}>
                 <LayerSelector selectedLayer={selectedLayer} setSelectedLayer={setSelectedLayer} />
                 <div className="flex-1 overflow-auto flex items-center overflow-x-auto max-w-full">
                     <Keyboard keyboard={keyboard!} selectedLayer={selectedLayer} setSelectedLayer={setSelectedLayer} />
