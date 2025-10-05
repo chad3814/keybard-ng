@@ -48,9 +48,10 @@ const AppSidebar = ({ activeItem, onItemSelect, detailsSidebar }: AppSidebarProp
                     </div>
                     {!isCollapsed && <span className="text-xl font-bold">Keybard</span>}
                 </div>
-                <SidebarMenuItem key="primary-toggle">
+                <div className={cn("flex w-full", isCollapsed ? "justify-center" : "justify-center items-center")}>
                     <SidebarTrigger name="primary-nav" className="z-10" />
-                </SidebarMenuItem>
+                    <span className={cn("mr-2 text-sm font-semibold text-slate-600 cursor-default", isCollapsed ? "hidden" : "block")}>Hide menu</span>
+                </div>
             </SidebarHeader>
 
             <SidebarContent className="py-2">
