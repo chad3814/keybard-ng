@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export const DETAIL_SIDEBAR_WIDTH = "26rem";
+export const DETAIL_SIDEBAR_WIDTH = "30rem";
 const modifierOptions = ["Shift", "Ctrl", "Alt", "Gui"] as const;
 const keyboardCategories = ["Numpad", "International", "Svalboard", "Special"] as const;
 

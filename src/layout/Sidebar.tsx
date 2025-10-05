@@ -33,17 +33,17 @@ type AppSidebarProps = {
 const AppSidebar = ({ activeItem, onItemSelect, detailsSidebar }: AppSidebarProps) => {
     const { state } = useSidebar("primary-nav", { defaultOpen: false });
     const isCollapsed = state === "collapsed";
-    const showDetailsSidebar = !detailsSidebar.isMobile && detailsSidebar.state === "expanded";
     const sidebarClasses = cn(
-        "z-11 fixed transition-[box-shadow,border-color] duration-300 ease-out border border-sidebar-border shadow-lg",
-        state === "collapsed" ? "rounded-full ml-2 h-[99vh] mt-[0.5vh] transition-all" : "rounded-2xl ml-2 h-[99vh] mt-[0.5vh] transition-transform"
+        "z-11 fixed transition-[box-shadow,border-color] duration-300 ease-out border border-sidebar-border shadow-lg ml-2 h-[98vh] mt-[1vh] transition-all",
+        state === "collapsed" ? "rounded-full " : "rounded-2xl"
     );
+    const sidebarHeaderClasses = cn("flex items-center gap-2", isCollapsed ? "justify-center py-3" : "justify-center py-3");
 
     return (
         <Sidebar rounded name="primary-nav" defaultOpen={false} collapsible="icon" hideGap className={sidebarClasses}>
-            <SidebarHeader className="p-4">
-                <div className={`flex items-center ${isCollapsed ? "justify-center" : "justify-start"}`}>
-                    <div className="flex h-12 w-12 items-center justify-center">
+            <SidebarHeader className="p-1">
+                <div className={sidebarHeaderClasses}>
+                    <div className="flex items-center justify-center">
                         <Logo />
                     </div>
                     {!isCollapsed && <span className="text-xl font-bold">Keybard</span>}
@@ -54,20 +54,21 @@ const AppSidebar = ({ activeItem, onItemSelect, detailsSidebar }: AppSidebarProp
             </SidebarHeader>
 
             <SidebarContent className="py-2">
-                <SidebarMenu>
+                <SidebarMenu className="justify-center h-full">
                     {primarySidebarItems.map((item) => {
                         const isActive = activeItem === item.url;
                         return (
-                            <SidebarMenuItem
-                                key={item.title}
-                                className={`cursor-pointer ${isActive ? "border-l-3 border-black box-border" : "border-l-3 border-transparent border-r-3"}`}
-                            >
+                            <SidebarMenuItem key={item.title} className={`cursor-pointer`}>
                                 <SidebarMenuButton
                                     asChild
                                     tooltip={item.title}
                                     sidebarName="primary-nav"
                                     sidebarDefaultOpen={false}
-                                    className="h-12 transition-colors hover:bg-sidebar-accent w-full rounded-none"
+                                    className={cn(
+                                        "h-12 transition-colors hover:bg-sidebar-accent",
+                                        isActive ? "bg-sidebar-accent text-sidebar-accent-foreground" : "text-sidebar-foreground",
+                                        isCollapsed ? "mx-0" : "mx-2"
+                                    )}
                                 >
                                     <button
                                         type="button"
