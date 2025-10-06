@@ -22,8 +22,8 @@ export const primarySidebarItems: SidebarItem[] = [
 ];
 
 const footerItems: SidebarItem[] = [
-    { title: "Help", url: "/help", icon: HelpCircle },
-    { title: "Settings", url: "/settings", icon: Settings },
+    { title: "About", url: "about", icon: HelpCircle },
+    { title: "Settings", url: "settings", icon: Settings },
 ];
 
 type AppSidebarProps = {

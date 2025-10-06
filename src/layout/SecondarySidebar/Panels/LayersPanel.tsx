@@ -49,8 +49,8 @@ const LayersPanel = () => {
                                 <div className={`ml-[5px] w-3 h-3 bg-black rounded-full flex-shrink-0`}></div>
                             </div>
                             <span className="text-md text-left w-full border-b border-b-dashed py-2">{layer}</span>
-                            <div className="flex flex-row flex-shrink-0">
-                                <div className="flex flex-col bg-black h-12 w-12 rounded-sm flex-shrink-0 items-center ">
+                            <div className="flex flex-row flex-shrink-0 items-center gap-1">
+                                <div className="flex flex-col bg-black h-12 w-12 rounded-sm flex-shrink-0 items-center">
                                     <Layers2Icon className="h-4 w-4 mt-2 mb-1 text-white" />
                                     <span className="text-xs text-white">{i}</span>
                                 </div>

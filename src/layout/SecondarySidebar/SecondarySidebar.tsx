@@ -9,6 +9,7 @@ import LayersPanel from "./Panels/LayersPanel";
 import MacrosPanel from "./Panels/MacrosPanel";
 import MiscKeysPanel from "./Panels/MiscKeysPanel/MiscKeysPanel";
 import QmkKeysPanel from "./Panels/QmkKeysPanel";
+import SettingsPanel from "./Panels/SettingsPanel";
 import TapdancePanel from "./Panels/TapdancePanel";
 import { X } from "lucide-react";
 
@@ -41,6 +42,7 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({ activePanel, onClos
         if (activePanel === "combos") return <CombosPanel />;
         if (activePanel === "qmk") return <QmkKeysPanel />;
         if (activePanel === "misc") return <MiscKeysPanel />;
+        if (activePanel === "settings") return <SettingsPanel />;
 
         return <div className="grid place-items-center h-full text-center text-sm text-muted-foreground px-6">{`Content for "${activePanel}" will appear here soon.`}</div>;
     };
@@ -69,7 +71,7 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({ activePanel, onClos
                     </Button>
                 </div>
             </SidebarHeader>
-            <SidebarContent className="p-4">{renderContent()}</SidebarContent>
+            <SidebarContent className="px-4">{renderContent()}</SidebarContent>
         </Sidebar>
     );
 };
@@ -94,6 +96,10 @@ const getPanelTitle = (panel: string | null) => {
             return "Misc Keys";
         case "combos":
             return "Combos";
+        case "settings":
+            return "Settings";
+        case "about":
+            return "About";
         default:
             return "Details";
     }

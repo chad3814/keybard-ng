@@ -123,6 +123,7 @@
 @layer base {
     * {
         @apply border-border outline-ring/50;
+        font-family: "Inter", sans-serif !important;
     }
     body {
         @apply bg-background text-foreground;
