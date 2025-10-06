@@ -24,8 +24,7 @@ const BindingsList: FC<Props> = ({ editElement, icon, setItemToEdit, items = [] 
     const { keyboard } = useVial();
     const itemsCount = items.length;
     const [groups, setGroups] = useState<ItemGroup<any>[]>([]);
-    const [activeGroup, setActiveGroup] = useState<any>(groups[0] || null);
-    // divide items into a max of 4 groups for better readability, most item lists are 50 items long
+    const [activeGroup, setActiveGroup] = useState<ItemGroup<any>>(groups[0] || null);
     if (itemsCount === 0) {
         return <div className="grid place-items-center h-full text-center text-sm text-muted-foreground px-6">No items available. Please add some first.</div>;
     }
