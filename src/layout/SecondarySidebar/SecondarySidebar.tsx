@@ -2,12 +2,17 @@ import * as React from "react";
 
 import { Sidebar, SidebarContent, SidebarHeader, useSidebar } from "@/components/ui/sidebar";
 
-import BasicKeyboards from "./BasicKeyboards";
+import BasicKeyboards from "./Panels/BasicKeyboards";
 import { Button } from "@/components/ui/button";
-import LayersPanel from "./LayersPanel";
+import CombosPanel from "./Panels/CombosPanel";
+import LayersPanel from "./Panels/LayersPanel";
+import MacrosPanel from "./Panels/MacrosPanel";
+import MiscKeysPanel from "./Panels/MiscKeysPanel/MiscKeysPanel";
+import QmkKeysPanel from "./Panels/QmkKeysPanel";
+import TapdancePanel from "./Panels/TapdancePanel";
 import { X } from "lucide-react";
 
-export const DETAIL_SIDEBAR_WIDTH = "30rem";
+export const DETAIL_SIDEBAR_WIDTH = "32rem";
 
 type KeyItem = {
     label: string;
@@ -29,13 +34,13 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({ activePanel, onClos
             );
         }
 
-        if (activePanel === "keyboard") {
-            return <BasicKeyboards />;
-        }
-
-        if (activePanel === "layers") {
-            return <LayersPanel />;
-        }
+        if (activePanel === "keyboard") return <BasicKeyboards />;
+        if (activePanel === "layers") return <LayersPanel />;
+        if (activePanel === "tapdances") return <TapdancePanel />;
+        if (activePanel === "macros") return <MacrosPanel />;
+        if (activePanel === "combos") return <CombosPanel />;
+        if (activePanel === "qmk") return <QmkKeysPanel />;
+        if (activePanel === "misc") return <MiscKeysPanel />;
 
         return <div className="grid place-items-center h-full text-center text-sm text-muted-foreground px-6">{`Content for "${activePanel}" will appear here soon.`}</div>;
     };
@@ -87,6 +92,8 @@ const getPanelTitle = (panel: string | null) => {
             return "QMK Keys";
         case "misc":
             return "Misc Keys";
+        case "combos":
+            return "Combos";
         default:
             return "Details";
     }

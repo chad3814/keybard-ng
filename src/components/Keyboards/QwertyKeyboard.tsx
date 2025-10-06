@@ -1,8 +1,7 @@
 import "react-simple-keyboard/build/css/index.css";
 
 import { FunctionComponent, useState } from "react";
-
-import Keyboard from "react-simple-keyboard";
+import Keyboard, { KeyboardOptions } from "react-simple-keyboard";
 
 interface IProps {
     onChange: (input: string) => void;
@@ -12,11 +11,13 @@ interface IProps {
 const QwertyKeyboard: FunctionComponent<IProps> = ({ onChange, keyboardRef }) => {
     const [layoutName, setLayoutName] = useState("default");
     const onKeyPress = (button: string) => {
+        console.log("aaaa");
+        console.log("Button pressed", button);
         if (button === "{shift}" || button === "{lock}") {
             setLayoutName(layoutName === "default" ? "shift" : "default");
         }
     };
-    const commonKeyboardOptions = {
+    const commonKeyboardOptions: KeyboardOptions = {
         onChange: (input: string) => onChange(input),
         onKeyPress: (button: any) => onKeyPress(button),
         theme: "simple-keyboard hg-theme-default hg-layout-default",
@@ -24,6 +25,11 @@ const QwertyKeyboard: FunctionComponent<IProps> = ({ onChange, keyboardRef }) =>
         syncInstanceInputs: true,
         mergeDisplay: true,
         debug: true,
+        disableButtonHold: true,
+        preventMouseDownDefault: true,
+        useButtonTag: true,
+        disableCaretPositioning: true,
+        useMouseEvents: true,
     };
 
     const keyboardOptions = {
@@ -67,7 +73,7 @@ const QwertyKeyboard: FunctionComponent<IProps> = ({ onChange, keyboardRef }) =>
         },
     };
 
-    return <Keyboard keyboardRef={(r) => (keyboardRef.current = r)} layoutName={layoutName} onRender={() => console.log("Rendered")} {...keyboardOptions} />;
+    return <Keyboard keyboardRef={(r) => (keyboardRef.current = r)} layoutName={layoutName} {...keyboardOptions} />;
 };
 
 export default QwertyKeyboard;

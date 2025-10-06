@@ -1,13 +1,14 @@
 import { ChevronsLeftRightEllipsis, Cpu, Footprints, HelpCircle, Keyboard, Layers, List, LucideIcon, Settings } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 
+import ComboIcon from "@/components/ComboIcon";
 import Logo from "@/components/Logo";
 import { cn } from "@/lib/utils";
 
 export type SidebarItem = {
     title: string;
     url: string;
-    icon: LucideIcon;
+    icon: LucideIcon | React.FC<React.SVGProps<SVGSVGElement>>;
 };
 
 export const primarySidebarItems: SidebarItem[] = [
@@ -15,6 +16,7 @@ export const primarySidebarItems: SidebarItem[] = [
     { title: "Layers", url: "layers", icon: Layers },
     { title: "Tapdances", url: "tapdances", icon: Footprints },
     { title: "Macros", url: "macros", icon: List },
+    { title: "Combos", url: "combos", icon: ComboIcon },
     { title: "QMK Keys", url: "qmk", icon: Cpu },
     { title: "Misc Keys", url: "misc", icon: ChevronsLeftRightEllipsis },
 ];
