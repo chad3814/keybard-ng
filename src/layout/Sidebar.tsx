@@ -66,8 +66,8 @@ const AppSidebar = ({ activeItem, onItemSelect, detailsSidebar }: AppSidebarProp
                                     sidebarName="primary-nav"
                                     sidebarDefaultOpen={false}
                                     className={cn(
-                                        "h-12 transition-colors hover:bg-sidebar-accent",
-                                        isActive ? "bg-sidebar-accent text-sidebar-accent-foreground" : "text-sidebar-foreground",
+                                        "h-12 transition-colors hover:bg-sidebar-accent font-semibold",
+                                        isActive ? "bg-sidebar-accent text-sidebar-accent-foreground" : "text-gray-400",
                                         isCollapsed ? "mx-0" : "mx-2"
                                     )}
                                 >

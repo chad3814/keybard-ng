@@ -55,6 +55,7 @@
         "radix-ui": "^1.4.3",
         "react": "^19.1.1",
         "react-dom": "^19.1.1",
+        "react-simple-keyboard": "^3.8.126",
         "tailwind-merge": "^3.3.1",
         "tailwindcss": "^4.1.14",
         "xz-decompress": "^0.2.3"

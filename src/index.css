@@ -127,4 +127,40 @@
     body {
         @apply bg-background text-foreground;
     }
+
+    .hg-theme-default {
+        background-color: white !important;
+    }
+    .controlArrows {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-flow: column;
+    }
+
+    .simple-keyboard-control.simple-keyboard {
+        background: none;
+    }
+
+    .simple-keyboard-control.simple-keyboard .hg-row:first-child {
+        margin-bottom: 10px;
+    }
+
+    .hg-theme-default .hg-row .hg-button-container,
+    .hg-theme-default .hg-row .hg-button:not(:last-child) {
+        margin-right: 2px !important;
+    }
+
+    .hg-theme-default .hg-row:not(:last-child) {
+        margin-bottom: 2px !important;
+    }
+
+    .simple-keyboard.hg-theme-default .hg-button.hg-selectedButton {
+        background: rgba(5, 25, 70, 0.53);
+        color: white;
+    }
+
+    .hg-button.hg-functionBtn.hg-button-space {
+        width: 350px;
+    }
 }

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import AppSidebar, { SidebarItem } from "./Sidebar";
-import SecondarySidebar, { DETAIL_SIDEBAR_WIDTH } from "./SecondarySidebar";
+import SecondarySidebar, { DETAIL_SIDEBAR_WIDTH } from "./SecondarySidebar/SecondarySidebar";
 import { SidebarProvider, useSidebar } from "@/components/ui/sidebar";
 
 import { Keyboard } from "@/components/Keyboard";
